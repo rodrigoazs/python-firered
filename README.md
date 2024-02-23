@@ -1,2 +1,2 @@
 # python-firered
-Remake using pygame of Pokemon FireRed. For studying purposes.
+Python code converted from disassembly Pokemon FireRed ROM
