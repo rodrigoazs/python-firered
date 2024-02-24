@@ -3,25 +3,28 @@ import pygame
 
 from src.tile import read_bin, Tileset, Tilemap
 
+DISPLAY_WIDTH = 240
+DISPLAY_HEIGHT = 160
+
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((512, 512))
+screen = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 clock = pygame.time.Clock()
 running = True
-dt = 0
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
 copyright_bin = read_bin("graphics/intro/copyright.bin")
 copyright_image = pygame.image.load("graphics/intro/copyright.png")
 
-tileset = Tileset("graphics/intro/scene_1/grass.png")
-tilemap = Tilemap("graphics/intro/scene_1/grass.bin", tileset)
+# tileset = Tileset("graphics/intro/scene_1/grass.png")
+# tilemap = Tilemap("graphics/intro/scene_1/grass.bin", tileset)
+# tilemap.render()
+
+tileset = Tileset("graphics/intro/copyright.png")
+tilemap = Tilemap("graphics/intro/copyright.bin", tileset)
 tilemap.render()
 
-# tileset = Tileset("graphics/intro/copyright.png")
-# tilemap = Tilemap("graphics/intro/copyright.bin", tileset)
-# tilemap.set_map()
 
 while running:
     # poll for events
@@ -31,11 +34,13 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("black")
+    screen.fill("white")
 
     pygame.draw.circle(screen, "red", player_pos, 40)
 
     screen.blit(tilemap.image, (0, 0))
+
+
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
